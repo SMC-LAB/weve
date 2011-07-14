@@ -14,7 +14,7 @@ use version; our $VERSION = qv('0.0.1');
 my $result = GetOptions(
     \%ARGV,
     'input|i=s', 'output|o=s', 'error|e=s',
-    'uri|u=s', 'db|d=s',
+    'uri|u=s', 'db|d=s', 'attachments|a',
     _meta_options( \%ARGV ),
 );
 
@@ -42,11 +42,13 @@ while (my ($name, $data) = each %$json_data) {
     my $doc = $db->newDoc($name);
     $doc->data($data);
 
-    if (my $audio_file = delete $data->{audio}) {
+    if (!ref $data
+        and -e $data
+        and $ARGV{attachments}) {
         $doc->addAttachment(
-            (File::Spec->splitpath($audio_file))[2],
-            MIME::Types->new->mimeTypeOf($audio_file)->type,
-            get_audio($audio_file)
+            (File::Spec->splitpath($binary_file))[2],
+            MIME::Types->new->mimeTypeOf($binary_file)->type,
+            get_binary($binary_file)
         );
     }
 
@@ -54,7 +56,7 @@ while (my ($name, $data) = each %$json_data) {
 }
 
 
-sub get_audio {
+sub get_binary {
     local $/;
     open my $FILE, '<', shift or die $!;
     binmode $FILE;
@@ -130,38 +132,36 @@ __END__
 
 =head1 NAME
 
- ann - Parse and decorate Guy Madison's M-skatt output files with additional annotations
+ json2couch - Upload a JSON document to a CouchDB server
 
 
 =head1 SYNOPSIS
 
- ann [OPTION]... [-a [echonest|beatsI|beatsII|audio|pfd|mtd|ssd]=DIR]... -d DAI-FILES... -e EST-FILES...
+ json2couch [OPTION]... [-d, --db DB] [-u, --uri URI] [[-i, --input] INPUTJSON] 
 
 
 =head1 DESCRIPTION
 
- Processes Guy Madison's M-skatt output *.dai (experiment description) and
- *.est (experiment data) files to native perl and json structures.
-
- Optionally fetches curated annotations from various services (Echo Nest for now)
+ Traverses a JSON document, assuming each top-level key to be a document name.
+ If -a, --attachments is given, considers any value that is a string representing
+ a filename that exists in the filesystem to be an attachment, and considers it
+ as such. Uploads each document/key in input JSON to a CouchDB server, as well
+ as any binary data found as an attachment.
  
 
 =head1 OPTIONS
 
- -d, --dai-files    <list of N strings > list of filenames with .dai extension
- -e, --est-files    <list of N strings > list of filenames with .est extension
- -a, --annotations  [string=string pair] -a key=value, where key is one of:
-                                             'echonest', 'beatsI', 'beatsII', 'audio', 'pfd', 'mtd', 'ssd',
-                                         and value is a directory containing:
-                                             '*.json', '*.beats', '*.beats', '*.mp3 '*.pfds2', '*.microtd', and '*.ssimd' files,
-                                         respectively (This option can be repeated multiple times)
- -o, --output       [string]             output filename                          (STDOUT)
-     --verbose      [integer]            print increasingly verbose error messages
-     --quiet                             print no diagnostic or warning messages
-     --version                           print current version
-     --license                           print author's contact and copyright information
-     --help                              print this information
-     --manual                            print the plain old documentation page
+ -i,  --input   [string] (STDIN)                 input JSON filename  
+ -u,  --uri     [string] (http://localhost:5984) CouchDB server uri
+ -d,  --db      [string] ()                      CouchDB database name
+      --verbose    [integer]              verbose error messages
+      --quiet                             no warning messages
+      --version                           print current version
+      --license                           author and copyright
+      --help                              print this information
+      --usage                             usage only
+      --options                           options only
+      --manual                            complete manual page
 
 
 =head1 VERSION
