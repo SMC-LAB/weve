@@ -9,7 +9,7 @@ use JSON;
 use MIME::Types;
 use CouchDB::Client;
 use File::Spec;
-use version; our $VERSION = qv('0.0.1');
+use version; our $VERSION = qv('0.0.2');
 
 my $result = GetOptions(
     \%ARGV,
@@ -184,7 +184,7 @@ __END__
 
 =head1 VERSION
 
- 0.0.1
+ 0.0.2
 
 
 =head1 AUTHOR
