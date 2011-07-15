@@ -42,16 +42,20 @@ while (my ($name, $data) = each %$json_data) {
     my $doc = $db->newDoc($name);
     $doc->data($data);
 
-    if (!ref $data
-        and -e $data
-        and $ARGV{attachments}) {
-        $doc->addAttachment(
-            (File::Spec->splitpath($binary_file))[2],
-            MIME::Types->new->mimeTypeOf($binary_file)->type,
-            get_binary($binary_file)
-        );
-    }
-
+    walk_hash(
+        $data,
+        sub {
+            my ($h, $k, $v) = @_;
+            if (defined $v and -e $v and $ARGV{attachments}) {
+                $doc->addAttachment(
+                    (File::Spec->splitpath($v))[2],
+                    MIME::Types->new->mimeTypeOf($v)->type,
+                    get_binary($v)
+                );
+                delete $h->{$k};
+            }
+        }
+    );
     $doc->create;
 }
 
@@ -69,6 +73,19 @@ sub get_json {
     return decode_json(<$FILE>);
 }
 
+sub walk_hash {
+    my ($hashref, $code) = @_;
+
+    while (my ($k, $v) = each(%$hashref)) {
+
+        if ('HASH' eq ref $v) {
+            walk_hash($v, $code);
+        }
+        else {
+            $code->($hashref, $k, $v);
+        }
+    }
+}
 
 sub _meta_options {
     my ($opt) = @_;
@@ -154,6 +171,7 @@ __END__
  -i,  --input   [string] (STDIN)                 input JSON filename  
  -u,  --uri     [string] (http://localhost:5984) CouchDB server uri
  -d,  --db      [string] ()                      CouchDB database name
+ -a,  --attachments [string]                     attach top-level file paths 
       --verbose    [integer]              verbose error messages
       --quiet                             no warning messages
       --version                           print current version
