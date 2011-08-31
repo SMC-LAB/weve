@@ -46,13 +46,17 @@ while (my ($name, $data) = each %$json_data) {
         $data,
         sub {
             my ($h, $k, $v) = @_;
-            if (defined $v and -e $v and $ARGV{attachments}) {
-                $doc->addAttachment(
-                    (File::Spec->splitpath($v))[2],
-                    MIME::Types->new->mimeTypeOf($v)->type,
-                    get_binary($v)
-                );
-                delete $h->{$k};
+            if ('ARRAY' eq ref $v) {
+                for my $derefv (@$v) {
+                    if (defined $derefv and -e $derefv and $ARGV{attachments}) {
+                        $doc->addAttachment(
+                            (File::Spec->splitpath($derefv))[2],
+                            MIME::Types->new->mimeTypeOf($derefv)->type,
+                            get_binary($derefv)
+                        );
+                        delete $h->{$k};
+                    }
+                }
             }
         }
     );
