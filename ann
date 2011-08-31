@@ -24,9 +24,10 @@ my $result = GetOptions(
 
 my %known_annotations = (
     echonest => 'json',
+    echonest_analysis => 'json',
     beatsI   => 'beats',
     beatsII  => 'beats',
-    audio    => 'mp3',
+    audio    => '(mp3|ogg|wav)',
     pfd      => 'pfds2',
     mtd      => 'microtd',
     ssd      => 'ssimd',
@@ -36,30 +37,38 @@ my %slurp_dispatch = (
     json  => sub { decode_json($_[0]) },
     beats => sub { [split m<\s+>, $_[0]] },
     mp3   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
+    wav   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
+    ogg   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
     map {
         $known_annotations{$_} => sub { [split m/\s+/, $_[0]] }
     } qw/pfd mtd ssd beatsI beatsII/
 );
 
-pod2usage(-verbose => 1) unless @dai_files and @est_files;
+# pod2usage(
+#     -message => "Number of arguments to --dai and --est must be the same",
+#     -verbose => 1
+# ) unless @dai_files == @est_files;
 
-pod2usage(
-    -message => "Number of arguments to --dai and --est must be the same",
-    -verbose => 1
-) unless @dai_files == @est_files;
-
-pod2usage(
-    -message => q{--annotations option only accepts keys 'echonest', 'beatsI', 'beatsII',
-    'audio', 'pfd', 'mtd', 'ssd', the values of which must be directories},
-    -verbose => 1
-) unless keys %annotations == grep { exists $known_annotations{$_} } keys %annotations
-  and values %annotations == grep { -d $_ or -l $_ } values %annotations;
+# pod2usage(
+#     -message => q{--annotations option only accepts keys 'echonest', 'echonest_analysis', 'beatsI', 'beatsII',
+#     'audio', 'pfd', 'mtd', 'ssd', the values of which must be directories},
+#     -verbose => 1
+# ) unless keys %annotations == grep { exists $known_annotations{$_} } keys %annotations
+#   and values %annotations == grep { -d $_ or -l $_ } values %annotations;
 
 
 my ( $INH, $OUTH, $ERRH ) = _prepare_io( \%ARGV, \@ARGV );
 
 
-my $rating_data;
+my $rating_data = {};
+
+if (exists $annotations{audio}) {
+    for (keys %{get_filedata_from_dir($annotations{audio}, $known_annotations{audio})}) {
+        $rating_data->{$_} = {};
+    }
+}
+ 
+
 
 LOAD:
 while (my ($dai_file, $est_file) = (shift @dai_files, shift @est_files)) {
@@ -249,14 +258,24 @@ sub get_filedata_from_dir {
     my @generic_files = grep { m[\.$extension] } readdir $GENERIC_DIR;
     closedir $GENERIC_DIR or croak $!;
 
-    my %generic_files = map {
-        basename($_, ".$extension") => do {
+    my %generic_files;
+    for my $generic_file (@generic_files) {
+        my $ext = (split m[\.], $generic_file)[-1];
+        my $key = basename($generic_file, ".$ext");
+        my $val = do {
             local $/;
-            open my $GENERIC_FILE, '<', File::Spec->catfile($generic_dir, $_) or croak $!;
-            $slurp_dispatch{$extension}->(<$GENERIC_FILE>, $generic_dir, $_);
+            open my $GENERIC_FILE, '<', File::Spec->catfile($generic_dir, $generic_file) or croak $!;
+            $slurp_dispatch{$ext}->(<$GENERIC_FILE>, $generic_dir, $generic_file);
+        };
+
+        if ($extension =~ m[(mp3|wav|ogg)]) {
+            push @{$generic_files{$key}}, $val;
         }
-    } @generic_files;
-    
+        else {
+            $generic_files{$key} = $val;
+        }
+    }
+
     return \%generic_files;
 }
 
@@ -319,6 +338,9 @@ sub decorate_ratings_with_annotation_data {
             = $annotation_data->{$stimuli_name}{response}{track};
 
             delete $stimuli_data->{$type}{audio_summary}{analysis_url};
+        }
+        elsif ('echonest_analysis' eq $type) {
+            $stimuli_data->{analysis} = $annotation_data->{$stimuli_name};
         }
         elsif ($type =~ m/(ssd|mtd|pfd)/) {
             $stimuli_data->{descriptors}{$type}
