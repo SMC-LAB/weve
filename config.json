@@ -1,0 +1,56 @@
+{
+    "_comments": {
+        "min": [
+            "Integer: complete disagreement with the question in the Likert item",
+            "String: descriptive statement for complete disagreement in the Likert item"
+        ],
+        "max": [
+            "Integer: complete agreement with the question in the Likert item",
+            "String: descriptive statement for complete agreement in the Likert item"
+        ],
+        "value": [
+            "Integer: default non-rated agreement level in the Likert item",
+            "String: descriptive statement for default non-rated agreement in the Likert item"
+        ],
+        "step": "Integer: agreement interval in the Likert item",
+        "question": "String: default generic question to which each Likert item refers",
+        "words": [
+            "String: name of the Likert item",
+            "String: specific question to which this Likert item refers"
+        ],
+        "submit": "String: label of widget that changes stimuli"
+    },
+    "min": [
+        0,
+        "Not at all"
+    ],
+    "max": [
+        10,
+        "Entirely"
+    ],
+    "value": [
+        0,
+        "Not yet rated!"
+    ],
+    "step": 1,
+    "question": "How well do the following words describe your experience of the music?",
+    "words": [
+        [
+            "Groove",
+            "How much do you want to move some part of your body in relation to some aspect of the music example?"
+        ],
+        [
+            "Speed",
+            "How fast does the music example feel?"
+        ],
+        [
+            "Preference",
+            "How much do you like the music example?"
+        ],
+        [
+            "Naturalness",
+            "How much does the music example sound like a typical musical performance?"
+        ]
+    ],
+    "submit": "Next"
+}

@@ -1,0 +1,15 @@
+<form id="save-ratings-form">
+  {{#words}}
+  <fieldset>
+    <legend>{{word}}: {{desc}}</legend>
+    <input list="ticks" type="range" min="{{min}}" max="{{max}}" value="{{value}}" step="{{step}}" name="{{word}}" onchange="document.getElementById('{{word}}_label').innerHTML = this.value" autocomplete="on" required {{autofocus}}>
+    <label for="{{word}}" id="{{word}}_label">{{valuelabel}}</label>
+  </fieldset>
+  {{/words}}
+  <datalist id="ticks">
+  {{#ticks}}
+    <option value="{{.}}">
+  {{/ticks}}
+  </datalist>
+  <input type="submit" onclick="parent.submit_form()" value="{{submitlabel}}">
+</form>
