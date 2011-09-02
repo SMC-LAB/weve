@@ -1,0 +1,23 @@
+[
+    {
+        "from": "",
+        "to": "index.html"
+    },
+    {
+        "from": "vendor/*",
+        "to": "vendor/*"
+    },
+    {
+        "from": "app/*",
+        "to": "app/*"
+    },
+    {
+        "from": "config/*",
+        "to": "config/*"
+    },
+    {
+        "from": "_view/*",
+        "to": "_view/*"
+    }
+]
+

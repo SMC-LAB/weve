@@ -6,22 +6,14 @@ function init(docs) {
 }
 function load_form(id) {
     console.log("load_form(): " + id);
-    var height = window.innerHeight / 2;
-    var width = window.innerWidth / 2;
-    $('#save-ratings-iframe').attr('height', height);
-    $('#save-ratings-iframe').attr('width', width);
-    $('#save-ratings-iframe').attr('src', '_show/range/' + id);
+    $('div#tags').load("_show/range/" + id);
 }
 function load_player(id) {
     console.log("load_player(): " + id);
-    var height = window.innerHeight / 2;
-    var width = window.innerWidth / 2;
-    $('#player-iframe').attr('height', height);
-    $('#player-iframe').attr('width', width);
-    $('#player-iframe').attr('src', '_show/player/' + id);
+    $('div#player').load("_show/player/" + id);
 }
 function submit_form() {
-    var form = $('#save-ratings-iframe').contents().find('#save-ratings-form');
+    var form = $('#save-ratings-form');
     var data = form.serializeArray();
     var id   = ids.current();
     var action = "_update/save-ratings/" + id;
@@ -41,29 +33,61 @@ function submit_form() {
                 if (req.status === 409 || status === 'timeout') {
                     if (this.retries <= this.maxretries) {
                         $.ajax(this);
-                        return;
                     }
                     else {
                         console.log("Couldn't update document due to conflicts after " + this.retries);
+                        return false;
                     }
                 }
-                console.log("Couldn't update document: " + req.status + "\n" + status + "\n" + error);
             }
         });
-        return true;
     });
 
     id = ids.next();
     load_form(id);
     load_player(id);
 
-    return true;
+    return false;
 }
-           
+function validate_submission() {
+    var form = $('#save-ratings-form');
+    var labels = form.find('label');
+    var valid = true;
+    for (var i = 0; i < labels.contents().length; i++) {
+        if (typeof labels.eq(i).contents() != 'number') {
+            labels.eq(i).css('color', 'red');
+            valid = false;
+        }
+    }
+    return valid;
+}
+function player_playing() {
+    console.log("playing");
+    var form = $('#save-ratings-form');
+    form.find('.likert-item').attr('disabled', 'disabled');
+    form.find('#submit-button').attr('disabled', 'disabled');
+    form.find('#submit-button').attr('value', 'Wait');
+}
+function player_paused() {
+    console.log("paused");
+    var form = $('#save-ratings-form');
+    form.find('.likert-item').removeAttr('disabled');
+    form.find('#submit-button').removeAttr('disabled');
+    form.find('#submit-button').attr('value', 'Next');
+}
+
 var ids;
+var config;
 $(document).ready(function() {
     var dbname = document.location.href.split('/')[3];
-    var view   = 'random'
+    var view   = 'random';
+
+    $.getJSON('/' + dbname + '/_design/weve/config.json', function (data) {
+        $('#question').html(data.question);
+        $('#disagreement').html(data.min[1]);
+        $('#agreement').html(data.max[1]);
+    });
+
     $db = $.couch.db(dbname);
     $db.view("weve/" + view, {
         success: function(data) {

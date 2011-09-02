@@ -30,7 +30,7 @@
     ],
     "value": [
         0,
-        "Not yet rated!"
+        "(Not yet rated)"
     ],
     "step": 1,
     "question": "How well do the following words describe your experience of the music?",
@@ -52,5 +52,5 @@
             "How much does the music example sound like a typical musical performance?"
         ]
     ],
-    "submit": "Next"
+    "submit": "Start"
 }
