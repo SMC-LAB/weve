@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>weve</title>
+    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/museo-sans.css"/>
+    <link rel="stylesheet" type="text/css" href="style/form.css"/>
+    <script src="vendor/couchapp/loader.js"></script>
+    <script src="js/welcome.js"></script>
+  </head>
+
+  <body>
+
+    <h1>Musical Rhythm Perception Listening Experiment</h1>
+
+    <p>You have been invited to participate in a listening experiment where you will rate the properties of a series of short music examples of rhythmic patterns. Before starting the experiment we would like to get a little more information about you.</p>
+    <p>Except name, this information is optional, but completing it will help us when we come to analyse the results of the experiment. Please be aware that no personal information will be made publicly available.</p>
+
+    <form id="myform" action="training.html">
+
+      <div id="personal">
+      <p>Please tells us a bit about yourself.</p>
+
+      <fieldset>
+        <legend><strong>Name</strong></legend>
+        <input id="form_name" type="text" name="Name" required="required"/>
+      </fieldset>
+      <fieldset>
+        <legend>Sex (male, female, other)</legend>
+        <input type="text" name="Sex"/>
+      </fieldset>
+      <fieldset>
+        <legend>Age</legend>
+        <input style="width:2.5em" type="number" name="Age" min="0" max="99"/>
+      </fieldset>
+      <fieldset>
+        <legend>Number of years of formal music training or of playing music</legend>
+        <input style="width:2.5em" type="number" name="YMT" min="0" max="99"/>
+      </fieldset>
+      </div>
+
+      <div id="expertise">
+      <p>Please rate your level of expertise in the following music styles.</p>
+
+      <fieldset class="expertise">
+        <legend>Jazz</legend>
+        <input type="radio" name="Jazz" value="0"/><label>Layman</label>
+        <input type="radio" name="Jazz" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Jazz" value="2"/><label>Expert</label>
+      </fieldset>
+
+      <fieldset class="expertise">
+        <legend>Rock</legend>
+        <input type="radio" name="Rock" value="0"/><label>Layman</label>
+        <input type="radio" name="Rock" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Rock" value="2"/><label>Expert</label>
+      </fieldset>
+
+      <fieldset class="expertise">
+        <legend>Funk</legend>
+        <input type="radio" name="Funk" value="0"/><label>Layman</label>
+        <input type="radio" name="Funk" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Funk" value="2"/><label>Expert</label>
+      </fieldset>
+
+      <fieldset class="expertise">
+        <legend>Pop</legend>
+        <input type="radio" name="Pop" value="0"/><label>Layman</label>
+        <input type="radio" name="Pop" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Pop" value="2"/><label>Expert</label>
+      </fieldset>
+
+      <fieldset class="expertise">
+        <legend>Samba</legend>
+        <input type="radio" name="Samba" value="0"/><label>Layman</label>
+        <input type="radio" name="Samba" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Samba" value="2"/><label>Expert</label>
+      </fieldset>
+
+      <fieldset class="expertise">
+        <legend>Reggae</legend>
+        <input type="radio" name="Reggae" value="0"/><label>Layman</label>
+        <input type="radio" name="Reggae" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Reggae" value="2"/><label>Expert</label>
+      </fieldset>
+
+      <fieldset class="expertise">
+        <legend>Folk</legend>
+        <input type="radio" name="Folk" value="0"/><label>Layman</label>
+        <input type="radio" name="Folk" value="1"/><label>Knowledgeable</label>
+        <input type="radio" name="Folk" value="2"/><label>Expert</label>
+      </fieldset>
+      </div>
+
+      <button type="button" class="submit-button" onclick="validate_submission() && submit_form()">Next</button>
+
+    </form>

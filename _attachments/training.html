@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>weve</title>
+    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+    <link rel="stylesheet" type="text/css" href="vendor/couchapp/jquery.tools.skin.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/museo-sans.css"/>
+    <script src="vendor/couchapp/loader.js"></script>
+    <script src="vendor/couchapp/jquery.tools.min.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+
+  <body>
+
+    <h1>Training Examples</h1>
+
+ 
+    <p>To help you to understand the types of music examples you will hear during the listening experiment and to practice using the interface to enter your ratings, there is a short experimental training phase to complete.</p>
+ 
+    <p>You can listen to these training music examples as many times as you like, however, in the main experiment, you will hear each example only once. Please use this opportunity to set the volume to a comfortable level. All of the music examples in the experiment have approximately the same loudness.</p>
+ 
+    <p>We recommend that you take the experiment in a <strong>quiet environment</strong>, and that you use <strong>headphones</strong> to listen to the examples.</p>
+
+    <div id="tags"></div>
+    
+    <p>Once you are comfortable with entering your ratings please click <code>Start</code> to begin the experiment.</p>
+    <a href="index.html"><button type="submit">Start</button></a>
+    
+    <div id="player"></div>
+ 
+    <script>
+    $('document').ready(function() {
+    ids = ["funk", "jazz", "samba"];
+    train();
+    console.log("volume change: " + ratio);
+    function train() {
+        var id;
+        ids.push(id = ids.shift());
+        load_form(id);
+        load_player(id);
+        $('#submit-button').live('click', function() {validate_submission() && train()});
+    }})
+    </script>
+  </body>
+</html>
