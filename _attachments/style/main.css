@@ -1,90 +1,60 @@
 /* add styles here */
 
 body {
-    font-family: 'Carme', sans-serif;
+    font-family: 'museo-sans', sans-serif;
     padding:4px;
-    text-align: center;
+    color:#555;
 }
+
+#app {
+    text-align: center;
+}    
 
 h1 {
     font-size: 2em;
-    margin-bottom: 2em;
 }
 
-#account {
-  float:right;
+.subhead {
+    font-weight: bold;
 }
 
-#profile {
-  border:4px solid #edd;
-  background:#fee;
-  padding:8px;
-  margin-bottom:8px;
+.subhead:before {
+    content: "("
 }
 
-#items {
-  border:4px solid #dde;
-  background:#eef;
-  padding:8px;
-  width:60%;
-  float:left;
+.subhead:after {
+    content: ")"
 }
 
-#sidebar {
-  border:4px solid #dfd;
-  padding:8px;
-  float:right;
-  width:30%;
+dl {
+    border: 1px solid;
+    padding: 1em;
 }
 
-#items li {
-  border:4px solid #f5f5ff;
-  background:#fff;
-  padding:8px;
-  margin:4px 0;
+dt {
+    font-weight: bold;
+}
+
+dd {
+    font-style: italic;
 }
 
 form {
   padding:4px;
   margin:6px;
-  /* background-color:#ddd;   */
-}
-
-div.avatar {
-  padding:2px;
-  padding-bottom:0;
-  margin-right:4px;
-  float:left;
-  font-size:0.78em;
-  width : 60px;
-  height : 60px;
-  text-align: center;
-}
-
-div.avatar .name {
-  padding-top:2px;
-}
-
-div.avatar img {
-  margin:0 auto;
-  padding:0;
-  width : 40px;
-  height : 40px;
-}
-
-#items ul {
-  list-style: none;
 }
 
 label {
-    color: #3C72E6;
     font-size: 0.8em;
     padding: 0 1em 0 1em;
 }
 
 fieldset {
-    padding: 1em;
-    margin: 1.5em;
+    clear: both;
+    min-height: 3em;
+    margin: 1em 0 1em 0;
+    margin-left:none;
+    padding-left:none;
 }
 
 legend {
@@ -116,9 +86,11 @@ div#header {
 }
 
 
-#submit-button {
+.submit-button {
     font-size: 2em;
     font-weight: bold;
-    font-family: 'Carme', sans-serif;
+    font-family: 'museo-sans', sans-serif;
+    color:#555;
     margin-top: 0.5em;
 }
+

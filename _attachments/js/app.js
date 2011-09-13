@@ -1,4 +1,4 @@
-function init(docs) {
+function init_weve(docs) {
     return {
         next:function(){docs.rows.shift(); return docs.rows[0].id;},
         current:function(){return docs.rows[0].id;}
@@ -13,6 +13,7 @@ function load_player(id) {
     $('div#player').load("_show/player/" + id);
 }
 function submit_form() {
+    if (!ids.current) return false;
     var form = $('#save-ratings-form');
     var data = form.serializeArray();
     var id   = ids.current();
@@ -77,28 +78,29 @@ function player_paused() {
 }
 
 var ids;
-var config;
-$(document).ready(function() {
-    var dbname = document.location.href.split('/')[3];
-    var view   = 'random';
+function start_weve() {
+    $(document).ready(function() {
+        var dbname = document.location.href.split('/')[3];
+        var view   = 'random';
 
-    $.getJSON('/' + dbname + '/_design/weve/config.json', function (data) {
-        $('#question').html(data.question);
-        $('#disagreement').html(data.min[1]);
-        $('#agreement').html(data.max[1]);
-    });
+        $.getJSON('/' + dbname + '/_design/weve/config.json', function (data) {
+            $('#question').html(data.question);
+            $('#disagreement').html(data.min[1]);
+            $('#agreement').html(data.max[1]);
+        });
 
-    $db = $.couch.db(dbname);
-    $db.view("weve/" + view, {
-        success: function(data) {
-            ids = init(data);
-            var id = ids.current();
-            load_form(id);
-            load_player(id);
-        },
-        error: function(status) {
-            console.log(status);
-        },
-        reduce: false
+        $db = $.couch.db(dbname);
+        $db.view("weve/" + view, {
+            success: function(data) {
+                ids = init_weve(data);
+                var id = ids.current();
+                load_form(id);
+                load_player(id);
+            },
+            error: function(status) {
+                console.log(status);
+            },
+            reduce: false
+        });
     });
-});
+}

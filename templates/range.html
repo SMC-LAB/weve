@@ -2,7 +2,7 @@
   {{#words}}
   <fieldset>
     <legend><span class="word">{{word}}</span> : <span class="desc">{{desc}}</span><label for="{{word}}" id="{{word}}_label">{{valuelabel}}</label></legend>
-    <input class="likert-item" list="ticks" type="range" min="{{min}}" max="{{max}}" value="{{value}}" step="{{step}}" name="{{word}}" autocomplete="on" {{autofocus}} required="required">
+    <input class="likert-item" list="ticks" type="range" min="{{min}}" max="{{max}}" value="{{value}}" step="{{step}}" name="{{word}}" autocomplete="on" {{autofocus}} required="required" readonly="readonly">
     
   </fieldset>
   {{/words}}
@@ -11,7 +11,7 @@
     <option value="{{.}}">
       {{/ticks}}
   </datalist>
-  <input id="submit-button" type="submit" onclick="validate_submission() && submit_form();" value="{{submitlabel}}">
+  <input id="submit-button" class="submit-button" type="submit" onclick="validate_submission() && submit_form();" value="{{submitlabel}}">
 </form>
 
 <script>

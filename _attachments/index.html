@@ -4,22 +4,26 @@
     <title>weve</title>
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <link rel="stylesheet" type="text/css" href="vendor/couchapp/jquery.tools.skin.css">
-    <link rel="stylesheet" type="text/css" href="fonts/load.css">
+    <link rel="stylesheet" type="text/css" href="fonts/museo-sans.css">
     <script src="vendor/couchapp/loader.js"></script>
     <script src="vendor/couchapp/jquery.tools.min.js"></script>
+    <script src="vendor/couchapp/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>
     <script src="js/app.js"></script>
   </head>
 
   <body>
 
-    <div id="header">
-      <h1 id="question"></h1>
-      <span id="disagreement"></span>
-      <span id="agreement"></span>
+    <div id="app">
+      <div id="header">
+        <h1 id="question"></h1>
+        <span id="disagreement"></span>
+        <span id="agreement"></span>
+      </div>
+      <div id="tags"></div>
+      <div id="player"></div>
     </div>
-    <div id="tags"></div>
-    <div id="player"></div>
 
+    <script>start_weve()</script>
   </body>
 
 </html>

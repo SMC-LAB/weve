@@ -1,10 +1,11 @@
 function(doc, req) {
 
+    if (!doc.ratings) {
+        doc.ratings = {};
+    }
+    
     for (var word in req.form) {
 
-        if (!doc.ratings) {
-            doc.ratings = {};
-        }
         if (!doc.ratings[word]) {
             doc.ratings[word] = {};
         }

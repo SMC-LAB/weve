@@ -16,7 +16,9 @@
         "question": "String: default generic question to which each Likert item refers",
         "words": [
             "String: name of the Likert item",
-            "String: specific question to which this Likert item refers"
+            "String: specific question to which this Likert item refers",
+            "String: descriptive statement for complement disagreement in this Likert word",
+            "String: descriptive statement for complement agreement in this Likert word"
         ],
         "submit": "String: label of widget that changes stimuli"
     },
@@ -33,23 +35,31 @@
         "(Not yet rated)"
     ],
     "step": 1,
-    "question": "How well do the following words describe your experience of the music?",
+    "question": "Please rate the following music example according to these words.",
     "words": [
         [
             "Groove",
-            "How much do you want to move some part of your body in relation to some aspect of the music example?"
+            "The sensation of wanting to move some part of your body in relation to some aspect of the music.",
+            "Not groovy",
+            "Groovy"
         ],
         [
             "Speed",
-            "How fast does the music example feel?"
+            "How fast the music example feels.",
+            "Slow",
+            "Fast"
         ],
         [
             "Preference",
-            "How much do you like the music example?"
+            "How much you like the music example.",
+            "Dislike",
+            "Like"
         ],
         [
             "Naturalness",
-            "How much does the music example sound like a typical musical performance?"
+            "How much the music example sounds likes a typical musical performance.",
+            "Unnatural",
+            "Natural"
         ]
     ],
     "submit": "Start"

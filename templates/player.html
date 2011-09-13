@@ -1,5 +1,21 @@
-<audio id="player" onplay="player_playing()" onpause="player_paused()" onended="player_paused()" preload="auto" autobuffer autoplay>
-  {{#files}}
-  <source src="{{src}}" type="{{type}}" title="{{title}}" />
-  {{/files}}
-</audio>
+<script src="vendor/couchapp/jQuery.jPlayer.2.1.0/jquery.jplayer.min.js"></script>
+
+<div id="jplayer"></div>
+
+<script>
+$(function() {
+  $("#jplayer").jPlayer( {
+    ready: function () {
+      $(this).jPlayer("setMedia",
+          {{media}}
+      ).jPlayer("play");
+    },
+    size: {width:"0px", height:"0px"},
+    supplied: "m4v, oga, wav, mp3",
+    swfPath: "../../vendor/couchapp/jQuery.jPlayer.2.1.0",
+    play: player_playing,
+    pause: player_paused,
+    ended: player_paused
+  });
+});
+</script>
