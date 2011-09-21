@@ -54,7 +54,7 @@ function validate_submission() {
     var form = $('#save-ratings-form');
     var labels = form.find('label');
     var valid = true;
-    for (var i = 0; i < labels.contents().length; i++) {
+    for (var i = 0; i < labels.length; i++) {
         console.log(i + ": checking " + labels.eq(i).text());
         if (labels.eq(i).text() === 'Not yet rated') {
             labels.eq(i).css('color', 'red');
