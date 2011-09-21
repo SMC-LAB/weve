@@ -27,7 +27,7 @@ my %known_annotations = (
     echonest_analysis => 'json',
     beatsI   => 'beats',
     beatsII  => 'beats',
-    audio    => '(mp3|ogg|wav)',
+    audio    => '(mp3|oga|wav|m4a)',
     pfd      => 'pfds2',
     mtd      => 'microtd',
     ssd      => 'ssimd',
@@ -38,37 +38,25 @@ my %slurp_dispatch = (
     beats => sub { [split m<\s+>, $_[0]] },
     mp3   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
     wav   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
-    ogg   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
+    oga   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
+    m4a   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
     map {
         $known_annotations{$_} => sub { [split m/\s+/, $_[0]] }
     } qw/pfd mtd ssd beatsI beatsII/
 );
 
-# pod2usage(
-#     -message => "Number of arguments to --dai and --est must be the same",
-#     -verbose => 1
-# ) unless @dai_files == @est_files;
-
-# pod2usage(
-#     -message => q{--annotations option only accepts keys 'echonest', 'echonest_analysis', 'beatsI', 'beatsII',
-#     'audio', 'pfd', 'mtd', 'ssd', the values of which must be directories},
-#     -verbose => 1
-# ) unless keys %annotations == grep { exists $known_annotations{$_} } keys %annotations
-#   and values %annotations == grep { -d $_ or -l $_ } values %annotations;
-
-
 my ( $INH, $OUTH, $ERRH ) = _prepare_io( \%ARGV, \@ARGV );
-
 
 my $rating_data = {};
 
 if (exists $annotations{audio}) {
     for (keys %{get_filedata_from_dir($annotations{audio}, $known_annotations{audio})}) {
-        $rating_data->{$_} = {};
+        $rating_data->{$_} = {
+            ratings => {},
+            subjects => {},
+        };
     }
 }
- 
-
 
 LOAD:
 while (my ($dai_file, $est_file) = (shift @dai_files, shift @est_files)) {
@@ -268,7 +256,7 @@ sub get_filedata_from_dir {
             $slurp_dispatch{$ext}->(<$GENERIC_FILE>, $generic_dir, $generic_file);
         };
 
-        if ($extension =~ m[(mp3|wav|ogg)]) {
+        if ($extension =~ m[(mp3|wav|oga|m4a)]) {
             push @{$generic_files{$key}}, $val;
         }
         else {
