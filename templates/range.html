@@ -3,9 +3,9 @@
   <fieldset>
     <legend>
       <span class="word">{{word}}</span> : <span class="desc">{{desc}}</span>
-      <label for="{{word}}" id="{{word}}_label">{{valuelabel}}</label>
     </legend>
     <input class="likert-item" list="ticks" type="range" min="{{min}}" max="{{max}}" value="{{value}}" step="{{step}}" name="{{word}}" autocomplete="on" {{autofocus}} required="required" readonly="readonly">
+    <label for="{{word}}" id="{{word}}_label">{{valuelabel}}</label>
     <span style="float:left; padding-top: 0.5em">{{minlabel}}</span>
     <span style="float:right; padding-right:4em; padding-top: 1em">{{maxlabel}}</span>
   </fieldset>
@@ -22,7 +22,9 @@
     $(":range").rangeinput({progress:true});
     var api = $(":range");
     api.change(function (e,v) {
-        var label = e.target.name + '_label';
-        document.getElementById(label).innerHTML = '';        
+        if ($("#jplayer").data("jPlayer").status.paused) {
+            var label = e.target.name + '_label';
+            document.getElementById(label).innerHTML = '';
+        }
     });
 </script>

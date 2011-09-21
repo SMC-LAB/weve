@@ -20,9 +20,9 @@ function(doc, req) {
             "desc"       : config.words[word][1],
             "type"       : config.type,
             "min"        : config.min[0],
-            "minlabel"   : config.min[1],
+            "minlabel"   : config.words[word][2],
             "max"        : config.max[0],
-            "maxlabel"   : config.max[1],
+            "maxlabel"   : config.words[word][3],
             "step"       : config.step,
             "value"      : config.value[0],
             "valuelabel" : config.value[1]

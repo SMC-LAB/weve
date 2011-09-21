@@ -30,15 +30,14 @@
  
     <script>
     $('document').ready(function() {
-    ids = ["funk", "jazz", "samba"];
-    train();
-    console.log("volume change: " + ratio);
-    function train() {
-        var id;
-        ids.push(id = ids.shift());
-        load_form(id);
-        load_player(id);
-        $('#submit-button').live('click', function() {validate_submission() && train()});
+        ids = ["funk", "jazz", "samba"];
+        train();
+        function train() {
+            var id;
+            ids.push(id = ids.shift());
+            load_form(id);
+            load_player(id);
+            $('#submit-button').live('click', function() {validate_submission() && train()});
     }})
     </script>
   </body>

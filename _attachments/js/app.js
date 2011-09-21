@@ -10,7 +10,7 @@ function load_form(id) {
 }
 function load_player(id) {
     console.log("load_player(): " + id);
-    $('div#player').load("_show/player/" + id);
+    $('div#player').load("_show/player/" + id);    
 }
 function submit_form() {
     if (!ids.current) return false;
@@ -55,7 +55,8 @@ function validate_submission() {
     var labels = form.find('label');
     var valid = true;
     for (var i = 0; i < labels.contents().length; i++) {
-        if (typeof labels.eq(i).contents() != 'number') {
+        console.log(i + ": checking " + labels.eq(i).text());
+        if (labels.eq(i).text() === 'Not yet rated') {
             labels.eq(i).css('color', 'red');
             valid = false;
         }
@@ -85,8 +86,8 @@ function start_weve() {
 
         $.getJSON('/' + dbname + '/_design/weve/config.json', function (data) {
             $('#question').html(data.question);
-            $('#disagreement').html(data.min[1]);
-            $('#agreement').html(data.max[1]);
+            // $('#disagreement').html(data.min[1]);
+            // $('#agreement').html(data.max[1]);
         });
 
         $db = $.couch.db(dbname);
