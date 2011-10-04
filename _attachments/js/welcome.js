@@ -20,11 +20,13 @@ function gen_id(o) {
 }
 
 function submit_form() {
-
     var form = $('#myform');
+
     var data = form.serializeObject();
     var id   = gen_id(data);
     data.name = id;
+
+    console.log(data,id);
 
     $.couch.signup(data, id, {
         success:function(d,s,x) {
@@ -34,22 +36,11 @@ function submit_form() {
                 password:id,
                 success:function() {
                     console.log("Logging in " + id);
-                    form.submit();
+                    window.location.replace("instructions.html");
                 }
             });
-        },
-        error:function(r,s,e) {
-            console.log("Couldn't sign up" + id + " because: " + e);
-            $('#form_name').attr("class", "error");
-            $('#form_name').focus(function() {$('#form_name').removeAttr("class")});
         }
     });
 
     return false;
-}
-
-function validate_submission() {
-    var form = $('#myform');
-    var name = form.find('#form_name');
-    return name.val() != "";
 }
