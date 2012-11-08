@@ -35,7 +35,7 @@
         "Not yet rated"
     ],
     "step": 1,
-    "question": "Please rate the following music example according to these words.",
+    "question": "How well do the following words describe your experience of the music?",
     "words": [
         [
             "Groove",
