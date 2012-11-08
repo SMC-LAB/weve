@@ -9,7 +9,7 @@
 
 /* input field */
 #myform input {
-	padding:5px;
+    padding:none;
 }
 
 /* error message */
@@ -18,16 +18,6 @@
 	font-size:11px;
 	padding:4px 10px;
 	color:red;
-	
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px; 
-	-moz-border-radius-bottomleft:0;
-	-moz-border-radius-topleft:0;	
-	-webkit-border-bottom-left-radius:0; 
-	-webkit-border-top-left-radius:0;
-	
-	-moz-box-shadow:0 0 6px #ddd;
-	-webkit-box-shadow:0 0 6px #ddd;	
 }
 
 .error p {
@@ -40,8 +30,9 @@ label {
 }
 
 fieldset {
-    margin-bottom: 1em;
-    margin-top: 1em;
+    padding: none;
+    margin-bottom: 0em;
+    margin-top: 0em;
 }
 
 .expertise label {
