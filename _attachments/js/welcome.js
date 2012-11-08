@@ -25,6 +25,8 @@ function submit_form() {
     var data = form.serializeObject();
     var id   = gen_id(data);
     data.name = id;
+    data.user_agent = navigator.userAgent;
+    data.start_time = Date();
 
     console.log(data,id);
 
@@ -36,7 +38,7 @@ function submit_form() {
                 password:id,
                 success:function() {
                     console.log("Logging in " + id);
-                    window.location.replace("instructions.html");
+                    redirect("instructions.html");
                 }
             });
         }

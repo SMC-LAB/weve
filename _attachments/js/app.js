@@ -1,6 +1,16 @@
+function redirect(url) {
+    if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
+        var referLink = document.createElement('a');
+        referLink.href = url;
+        document.body.appendChild(referLink);
+        referLink.click();
+    } else {
+        location.href = url;
+    }
+}
 function init_weve(docs) {
     return {
-        next:function(){docs.rows.shift(); return docs.rows[0].id;},
+        next:function(){docs.rows.shift(); if (docs.rows[0]) {return docs.rows[0].id;} else {return null}},
         current:function(){return docs.rows[0].id;}
     };
 }
@@ -13,7 +23,9 @@ function load_player(id) {
     $('div#player').load("_show/player/" + id);    
 }
 function submit_form() {
-    if (!ids.current) return false;
+    if (!ids.current) {
+        return false;
+    }
     var form = $('#save-ratings-form');
     var data = form.serializeArray();
     var id   = ids.current();
@@ -45,6 +57,9 @@ function submit_form() {
     });
 
     id = ids.next();
+    if (!id) {
+        redirect("finish.html");
+    }
     load_form(id);
     load_player(id);
 
@@ -56,7 +71,9 @@ function validate_submission() {
     var valid = true;
     for (var i = 0; i < labels.length; i++) {
         console.log(i + ": checking " + labels.eq(i).text());
-        if (labels.eq(i).text() === 'Not yet rated') {
+        if (labels.eq(i).text() === 'Not yet rated' ||
+            labels.eq(i).text() === 'Please rate this item') {
+            labels.eq(i).text("Please rate this item");
             labels.eq(i).css('color', 'red');
             valid = false;
         }
@@ -83,12 +100,6 @@ function start_weve() {
     $(document).ready(function() {
         var dbname = document.location.href.split('/')[3];
         var view   = 'random';
-
-        $.getJSON('/' + dbname + '/_design/weve/config.json', function (data) {
-            $('#question').html(data.question);
-            // $('#disagreement').html(data.min[1]);
-            // $('#agreement').html(data.max[1]);
-        });
 
         $db = $.couch.db(dbname);
         $db.view("weve/" + view, {
