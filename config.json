@@ -44,10 +44,10 @@
             "Groovy"
         ],
         [
-            "Speed",
-            "How fast the music example feels.",
-            "Slow",
-            "Fast"
+          "Familiarity",
+            "How familiar you are with the music example.",
+            "Not familiar",
+            "Familiar"
         ],
         [
             "Preference",

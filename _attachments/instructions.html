@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>weve</title>
-    <link rel="stylesheet" type="text/css" href="style/main.css"/>
-    <link rel="stylesheet" type="text/css" href="fonts/museo-sans.css"/>
-  </head>
+    <head>
+        <title>weve</title>
+        <link rel="stylesheet" type="text/css" href="style/main.css"/>
+        <link rel="stylesheet" type="text/css" href="fonts/museo-sans.css"/>
+    </head>
 
-  <body>
+    <body>
 
-    <h1>Experiment instructions</h1>
-    <span class="subhead">Please read before starting the experiment</span>
+        <h1>Experiment instructions</h1>
+        <span class="subhead">Please read before starting the experiment</span>
 
-    <div class="highlight" style="float:right;">
-      <p>Please note that: 
-        <ul>
-          <li>You can hear each music example only once.</li>
-          <li>You cannot begin rating until the current</br>music example has finished playing.</li>
-          <li>You must input a rating in every category</br/>(even if the default position agrees with your rating).</li>
-          <li>You cannot go back to a previous music example</br>once you have moved to the next.</li>
-        </ul>
-      </p>
-    </div>
+        <div class="highlight" style="float:right;">
+            Please note that: 
+            <ul>
+                <li>You can hear each music example only once.</li>
+                <li>You cannot begin rating until the current<br/>music example has finished playing.</li>
+                <li>You must input a rating in every category<br/>(even if the default position agrees with your rating).</li>
+                <li>You cannot go back to a previous music example<br/>once you have moved to the next.</li>
+            </ul>
+        </div>
 
-    <p>You will hear a short music example of 10-15 seconds in length. After this has finished playing you can rate the music example according to the following words: 
-      <dl>
-        <dt>Groove</dt>
-        <dd>How much the music example grooves (here defined as the sensation of wanting to move some part of your body in relation to some aspect of the music.)</dd>
- 
-        <dt>Speed</dt>
-        <dd>How fast the music example feels.</dd>
- 
-        <dt>Preference</dt>
-        <dd>How much you like the music example.</dd>
+        <p>You will hear a short music example of 15-20 seconds in length. After this has finished playing you can rate the music example according to the following words:</p>
+        <dl>
+            <dt>Groove</dt>
+            <dd>How much the music example grooves (here defined as the sensation of wanting to move some part of your body in relation to some aspect of the music.)</dd>
+            
+            <dt>Familiarity</dt>
+            <dd>How familiar you are with the music example (note
+            please rate general familiarity with the music before the
+            experiment, not during it).</dd>
+            
+            <dt>Preference</dt>
+            <dd>How much you like the music example.</dd>
 
-        <dt>Naturalness</dt>
-        <dd>How natural the music example sounds (here defined as how much the music example sounds like a typical musical performance.)</dd>
-      </dl>
-    </p>
+            <dt>Naturalness</dt>
+            <dd>How natural the music example sounds (here defined as how much the music example sounds like a typical musical performance.)</dd>
+        </dl>
 
-    <p>Your ratings will be done on a scale from <code>0</code> to <code>10</code>.
-      <ol>
-        <li><code>0</code> means you that the word does not describe your experience of the music <strong>at all</strong>.</li>
-        <li><code>10</code> means you that the word describes your experience of the music <strong>entirely</strong>.</li>
-      </ol>
-    </p>
 
-    <p>Once you have finished rating a music example click <code>next</code> to move on to the next. As soon as the next page has loaded a new music example will begin to play.</p>
+        <p>Your ratings will be done on a scale from <code>0</code> to <code>10</code>.</p>
+        <ol>
+            <li><code>0</code> means you that the word does not describe your experience of the music <strong>at all</strong>.</li>
+            <li><code>10</code> means you that the word describes your experience of the music <strong>entirely</strong>.</li>
+        </ol>
 
-    <div class="highlight" style="float:right;">
-      <p>Please only use the <code>next</code> button to navigate through the experiment.</br><strong>Do not use your browser's back, forward or refresh buttons</strong>.</p>
-    </div>
+        <p>Once you have finished rating a music example click <code>next</code> to move on to the next. As soon as the next page has loaded a new music example will begin to play.</p>
 
-    <p>In total there are 40 music examples and we predict that the experiment should take about 30 minutes to complete. You will need to complete the experiment in one session. However, if you need to take a short break at any time, please do so.</p>
- 
-    <p>Should you need them, these instructions will be available as a pop-up window at any time during the experiment. Simply click the button that says <code>instructions</code> on the experiment page.
-    </p>
+        <div class="highlight" style="float:right;">
+            <p>Please only use the <code>next</code> button to navigate through the experiment.<br/><strong>Do not use your browser's back, forward or refresh buttons</strong>.</p>
+        </div>
 
-    <p>Your participation in this experiment is completely voluntary. If you wish to stop particitating you may do so at any time, but <strong>you may only participate in this experiment once</strong>.</p>
- 
- 
-    <p>To proceed to the training page click the <code>next</code> button.</p>
- 
-    <a id="submit-link" href="training.html"><button id="submit-button" type="submit" class="submit-button">Next</button></a>
+        <p>In total there are 40 music examples and we predict that the experiment should take about 30 minutes to complete. You will need to complete the experiment in one session. However, if you need to take a short break at any time, please do so.</p>
+        
+        <p>Should you need them, these instructions will be available as a pop-up window at any time during the experiment. Simply click the button that says <code>instructions</code> on the experiment page.
+        </p>
 
-    <script>
-      if (document.referrer.split('/').pop().split('?')[0] === 'index.html') {
-          document.getElementById('submit-link').href = 'javascript:window.opener="x"; window.close();'
-          document.getElementById('submit-button').innerHTML = 'Close';
-      }
-    </script>
+        <p>Your participation in this experiment is completely voluntary. If you wish to stop particitating you may do so at any time, but <strong>you may only participate in this experiment once</strong>.</p>
+        
+        
+        <p>To proceed to the training page click the <code>next</code> button.</p>
+        
+        <a id="submit-link" href="training.html"><button id="submit-button" type="submit" class="submit-button">Next</button></a>
 
-  </body>
+        <script>
+            if (document.referrer.split('/').pop().split('?')[0] === 'index.html') {
+            document.getElementById('submit-link').href = 'javascript:window.opener="x"; window.close();'
+            document.getElementById('submit-button').innerHTML = 'Close';
+            }
+        </script>
+
+    </body>
 </html>
