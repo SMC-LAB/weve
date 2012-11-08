@@ -32,8 +32,11 @@ function(doc, req) {
     return Mustache.to_html(templates.range, {
         "words":words,
         "ticks":[config.min[1], config.max[1]],
+        "minlabel":config.min[1],
+        "maxlabel":config.max[1],
         "id":doc._id,
         "submitlabel":config.submit,
         "noteslabel" : config.notes,
+        "question":config.question
     });
 }

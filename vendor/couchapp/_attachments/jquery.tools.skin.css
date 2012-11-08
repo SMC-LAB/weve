@@ -5,10 +5,11 @@
 	position:relative; 
 	cursor:pointer;
 	border:1px solid #333;
-	width:95%;
+	width:100%;
 	float:left; 
 	clear:right;
 	margin:10px 1em 10px 0;
+        padding-right:none;
 	-moz-border-radius:5px; 
 	-webkit-border-radius:5px; 
 	-moz-box-shadow:inset 0 0 8px #000;
@@ -47,6 +48,11 @@
         font-family: 'museo-sans', sans-serif;
         font-size: 1em;
         font-weight: bold;
-        padding-top: 8px;
+        padding: 4px;
+        padding-left:1em;
+        padding-right: 1em;
+        padding-top:30px;
         width: 1.4em;
+        position:absolute;
+        right:1em;
 }

@@ -1,4 +1,10 @@
-<form id="save-ratings-form" onsubmit="return false;">
+<h1>{{question}}</h1>
+
+<span style="float:left; margin:1em">{{minlabel}}</span>
+<span style="float:right; margin:1em">{{maxlabel}}</span>
+
+<div style="clear:both; margin-bottom:1em"></div>
+<form id="save-ratings-form" onsubmit="return false;" style="clear:both; margin-top:1em">
   {{#words}}
   <fieldset>
     <legend>
@@ -6,8 +12,8 @@
     </legend>
     <input class="likert-item" list="ticks" type="range" min="{{min}}" max="{{max}}" value="{{value}}" step="{{step}}" name="{{word}}" autocomplete="on" {{autofocus}} required="required" readonly="readonly">
     <label for="{{word}}" id="{{word}}_label">{{valuelabel}}</label>
-    <span style="float:left; padding-top: 0.5em">{{minlabel}}</span>
-    <span style="float:right; padding-right:4em; padding-top: 1em">{{maxlabel}}</span>
+    <!-- <span style="float:left; padding-top: 0.5em">{{minlabel}}</span> -->
+    <!-- <span style="float:right; padding-right:4em; padding-top: 1em">{{maxlabel}}</span> -->
   </fieldset>
   {{/words}}
   <datalist id="ticks">
