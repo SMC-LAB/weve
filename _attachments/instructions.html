@@ -11,7 +11,18 @@
     <h1>Experiment instructions</h1>
     <span class="subhead">Please read before starting the experiment</span>
 
-    <p>You will hear a short percussive music example of between 10 and 15 seconds in length. After this has finished playing you can rate the music example according to the following words: 
+    <div class="highlight" style="float:right;">
+      <p>Please note that: 
+        <ul>
+          <li>You can hear each music example only once.</li>
+          <li>You cannot begin rating until the current</br>music example has finished playing.</li>
+          <li>You must input a rating in every category</br/>(even if the default position agrees with your rating).</li>
+          <li>You cannot go back to a previous music example</br>once you have moved to the next.</li>
+        </ul>
+      </p>
+    </div>
+
+    <p>You will hear a short music example of 10-15 seconds in length. After this has finished playing you can rate the music example according to the following words: 
       <dl>
         <dt>Groove</dt>
         <dd>How much the music example grooves (here defined as the sensation of wanting to move some part of your body in relation to some aspect of the music.)</dd>
@@ -27,22 +38,18 @@
       </dl>
     </p>
 
-    <p>TODO: a note about the nature of the scale (quantitative v. qualitative, etc)</p>
-    <p>TODO: should be first page</p>
-
-    <p>Please note that:
- 
-      <ul>
-        <li>You can hear each music example only once.</li>
-        <li>You cannot begin rating until the current music example has finished playing.</li>
-        <li>You must input a rating in every category (even if the default position agrees with your rating).</li>
-        <li>You cannot go back to a previous music example once you have moved to the next.</li>
-      </ul>
+    <p>Your ratings will be done on a scale from <code>0</code> to <code>10</code>.
+      <ol>
+        <li><code>0</code> means you that the word does not describe your experience of the music <strong>at all</strong>.</li>
+        <li><code>10</code> means you that the word describes your experience of the music <strong>entirely</strong>.</li>
+      </ol>
     </p>
 
-    <p>Once you have finished rating a music example click <code>next</code> to move on to the next. As soon as the next page has loaded the music example will begin to play.</p>
+    <p>Once you have finished rating a music example click <code>next</code> to move on to the next. As soon as the next page has loaded a new music example will begin to play.</p>
 
-    <p>Please only use the <code>next</code> button to navigate through the experiment. Do not use your browser's <strong>back</strong>, <strong>forward</strong> or <strong>refresh</strong> buttons.</p>
+    <div class="highlight" style="float:right;">
+      <p>Please only use the <code>next</code> button to navigate through the experiment.</br><strong>Do not use your browser's back, forward or refresh buttons</strong>.</p>
+    </div>
 
     <p>In total there are 40 music examples and we predict that the experiment should take about 30 minutes to complete. You will need to complete the experiment in one session. However, if you need to take a short break at any time, please do so.</p>
  
@@ -54,7 +61,14 @@
  
     <p>To proceed to the training page click the <code>next</code> button.</p>
  
-    <a href="training.html"><button type="submit">Next</button></a>
+    <a id="submit-link" href="training.html"><button id="submit-button" type="submit" class="submit-button">Next</button></a>
+
+    <script>
+      if (document.referrer.split('/').pop().split('?')[0] === 'index.html') {
+          document.getElementById('submit-link').href = 'javascript:window.opener="x"; window.close();'
+          document.getElementById('submit-button').innerHTML = 'Close';
+      }
+    </script>
 
   </body>
 </html>

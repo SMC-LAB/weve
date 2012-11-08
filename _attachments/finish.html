@@ -1,24 +1,80 @@
------------------------------------------------ 
-Page X: Post-experiment interview 
----------------------------------------------- 
- 
-Thank you for completing the listening and rating section of the experiment.  
- 
-We would now like to ask for your feedback by answering the following questions: 
- 
-i) Did you find the experiment manageable? 
- 
-ii) Were there any technical problems with the web-page running the experiment? For example, was the audio playback interrupted?
- 
-iii) Did you find the length of the experiment appropriate? 
- 
-iv) Did you find the experiment tiring? 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>weve</title>
+    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+    <link rel="stylesheet" type="text/css" href="fonts/museo-sans.css"/>
+    <script src="vendor/couchapp/loader.js"></script>
+    <script src="vendor/couchapp/jquery.tools.min.js"></script>
+    <script src="js/update_user.js"></script>
+  </head>
 
-v) Do you have any additional comments? 
- 
-        <p> 
-          <label>email *</label> 
-          <input type="email" name="email" required="required" /> 
-        </p> 
- 
-*Submit* button
+  <body>
+
+    <h1>Post-experiment interview</h1>
+    
+    <p>Thank you for completing the listening and rating section of the experiment.</p>
+    
+    <p>We would now like to ask for your feedback by answering the following questions:
+
+      <form id="interview" action="http://smc.inescporto.pt/shakeit/"> 
+
+        <fieldset>
+          <legend>Did you find the experiment manageable?</legend>
+          <select name="experiment-manageable">
+            <option selected></option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Prefer not to say</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Were there any technical problems with the web-page running the experiment? For example, was the audio playback interrupted?</legend>
+          <select name="technical-problems">
+            <option selected></option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Prefer not to say</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Did you find the length of the experiment appropriate?</legend>
+          <select name="experiment-length">
+            <option selected></option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Prefer not to say</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Did you find the experiment tiring?</legend>
+          <select name="experiment-tiring">
+            <option selected></option>
+            <option>Yes</option>
+            <option>No</option>
+            <option>Prefer not to say</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Do you have any additional comments? For example, if you had any technical problems, what were they?</legend>
+          <textarea name="experiment-notes"></textarea>
+        </fieldset>
+
+        <p>If you would like to know about the results of the experience, please leave your email address:
+          <fieldset>
+            <legend>Email</legend>
+            <input type="email" name="email"/>
+          </fieldset>
+        </p>
+        <button type="submit" class="submit-button">Finish Experiment</button>
+      </form> 
+      
+      <script>
+        $('#interview').submit(update_user);
+      </script>
+  </body>
+</html>
