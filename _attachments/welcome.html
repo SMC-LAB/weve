@@ -15,7 +15,7 @@
 
     <h1>Simple Melody Listening Experiment</h1>
 
-    <p>You have been invited to participate in a 35-minute listening
+    <p>You have been invited to participate in a 15-minute listening
     experiment where you will <strong>rate the properties of short
     music examples of simple melodies</strong>.</p>
 
@@ -28,10 +28,6 @@
       <div id="personal">
         <p>Please tells us a bit about yourself.</p>
 
-        <fieldset>
-          <legend><strong>Name</strong></legend>
-          <input id="form_name" type="text" name="Name" required="required"/>
-        </fieldset>
         <fieldset>
           <legend>Sex</legend>
           <select name="Sex" required="required">
@@ -51,74 +47,21 @@
         </fieldset>
       </div>
 
-      <div id="expertise">
-        <p>Please rate your level of expertise in the following music styles.</p>
-
-        <fieldset class="expertise">
-          <legend>Jazz</legend>
-          <label>Layman</label><input type="radio" name="Jazz" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Jazz" value="1"/>
-          <label>Expert</label><input type="radio" name="Jazz" value="2"/>
-        </fieldset>
-
-        <fieldset class="expertise">
-          <legend>Rock</legend>
-          <label>Layman</label><input type="radio" name="Rock" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Rock" value="1"/>
-          <label>Expert</label><input type="radio" name="Rock" value="2"/>
-        </fieldset>
-
-        <fieldset class="expertise">
-          <legend>Funk</legend>
-          <label>Layman</label><input type="radio" name="Funk" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Funk" value="1"/>
-          <label>Expert</label><input type="radio" name="Funk" value="2"/>
-        </fieldset>
-
-        <fieldset class="expertise">
-          <legend>Pop</legend>
-          <label>Layman</label><input type="radio" name="Pop" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Pop" value="1"/>
-          <label>Expert</label><input type="radio" name="Pop" value="2"/>
-        </fieldset>
-
-        <fieldset class="expertise">
-          <legend>Samba</legend>
-          <label>Layman</label><input type="radio" name="Samba" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Samba" value="1"/>
-          <label>Expert</label><input type="radio" name="Samba" value="2"/>
-        </fieldset>
-
-        <fieldset class="expertise">
-          <legend>Reggae</legend>
-          <label>Layman</label><input type="radio" name="Reggae" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Reggae" value="1"/>
-          <label>Expert</label><input type="radio" name="Reggae" value="2"/>
-        </fieldset>
-
-        <fieldset class="expertise">
-          <legend>Folk</legend>
-          <label>Layman</label><input type="radio" name="Folk" value="0" required="required"/>
-          <label>Knowledgeable</label><input type="radio" name="Folk" value="1"/>
-          <label>Expert</label><input type="radio" name="Folk" value="2"/>
-        </fieldset>
-      </div>
-
       <button type="submit" class="submit-button">Next</button>
       <button type="reset" class="submit-button">Reset</button>
     </form>
 
     <script>
-      $('#myform').submit(submit_form);
+  $('#myform').submit(submit_form);
 function redirect(url) {
-    if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
-        var referLink = document.createElement('a');
-        referLink.href = url;
-        document.body.appendChild(referLink);
-        referLink.click();
-    } else {
-        location.href = url;
-    }
+  if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
+    var referLink = document.createElement('a');
+    referLink.href = url;
+    document.body.appendChild(referLink);
+    referLink.click();
+  } else {
+    location.href = url;
+  }
 }
     </script>
 
