@@ -1,66 +1,72 @@
 {
-    "_comments": {
-        "min": [
-            "Integer: complete disagreement with the question in the Likert item",
-            "String: descriptive statement for complete disagreement in the Likert item"
-        ],
-        "max": [
-            "Integer: complete agreement with the question in the Likert item",
-            "String: descriptive statement for complete agreement in the Likert item"
-        ],
-        "value": [
-            "Integer: default non-rated agreement level in the Likert item",
-            "String: descriptive statement for default non-rated agreement in the Likert item"
-        ],
-        "step": "Integer: agreement interval in the Likert item",
-        "question": "String: default generic question to which each Likert item refers",
-        "words": [
-            "String: name of the Likert item",
-            "String: specific question to which this Likert item refers",
-            "String: descriptive statement for complement disagreement in this Likert word",
-            "String: descriptive statement for complement agreement in this Likert word"
-        ],
-        "submit": "String: label of widget that changes stimuli"
-    },
+  "_comments": {
     "min": [
-        0,
-        "Not at all"
+      "Integer: complete disagreement with the question in the Likert item",
+      "String: descriptive statement for complete disagreement in the Likert item"
     ],
     "max": [
-        10,
-        "Entirely"
+      "Integer: complete agreement with the question in the Likert item",
+      "String: descriptive statement for complete agreement in the Likert item"
     ],
     "value": [
-        0,
-        "Not yet rated"
+      "Integer: default non-rated agreement level in the Likert item",
+      "String: descriptive statement for default non-rated agreement in the Likert item"
     ],
-    "step": 1,
-    "question": "How well do the following words describe your experience of the music?",
+    "step": "Integer: agreement interval in the Likert item",
+    "question": "String: default generic question to which each Likert item refers",
     "words": [
-        [
-            "Groove",
-            "The sensation of wanting to move some part of your body in relation to some aspect of the music.",
-            "Not groovy",
-            "Groovy"
-        ],
-        [
-          "Familiarity",
-            "How familiar you are with the music example.",
-            "Not familiar",
-            "Familiar"
-        ],
-        [
-            "Preference",
-            "How much you like the music example.",
-            "Dislike",
-            "Like"
-        ],
-        [
-            "Naturalness",
-            "How much the music example sounds likes a typical musical performance.",
-            "Unnatural",
-            "Natural"
-        ]
+      "String: name of the Likert item",
+      "String: specific question to which this Likert item refers",
+      "String: descriptive statement for complement disagreement in this Likert word",
+      "String: descriptive statement for complement agreement in this Likert word"
     ],
-    "submit": "Start"
+    "submit": "String: label of widget that changes stimuli"
+  },
+  "min": [
+    0,
+    "Not at all"
+  ],
+  "max": [
+    10,
+    "Entirely"
+  ],
+  "value": [
+    0,
+    "Not yet rated"
+  ],
+  "step": 1,
+  "question": "How well do you think that the following words match your experience of what you just heard?",
+  "words": [
+    [
+      "Movement inducing",
+      "I feel like I want to move some part of my body in relation to some aspect of the music.",
+      "Entirely",
+      "Not at all"
+    ],
+    [
+      "Familiarity",
+      "I am used to listening to this or similar music.",
+      "Entirely",
+      "Not at all"
+    ],
+    [
+      "Preference",
+      "I like it!",
+      "Entirely",
+      "Not at all"
+    ],
+    [
+      "Naturalness",
+      "This sounds natural, as if played by good musicians.",
+      "Entirely",
+      "Not at all"
+    ],
+    [
+      "Swingy",
+      "This music has the rhythmic quality characteristic for swing and jazz music.",
+      "Entirely",
+      "Not at all"
+    ]
+  ],
+  "submit": "Start"
 }
