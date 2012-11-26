@@ -18,7 +18,7 @@ function(doc, req) {
 
         var src   = ['', db, doc._id, file].join('/');
         var type  = doc._attachments[file].content_type;
-        var title = doc.echonest.title || doc._id;
+        var title = doc._id;
         var ext   = file.split('.')[1];
         media[ext] = src;
 
