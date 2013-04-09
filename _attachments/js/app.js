@@ -115,7 +115,7 @@ function start_weve() {
   check_user();
   $(document).ready(function() {
     var dbname = document.location.href.split('/')[3];
-    var view   = new Date().getTime() % 2 == 0 ? 'even' : 'odd';
+    var view   = 'random' // new Date().getTime() % 2 == 0 ? 'even' : 'odd';
 
     $db = $.couch.db(dbname);
     $db.view("weve/" + view, {
