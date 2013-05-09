@@ -13,7 +13,7 @@
 
   <body>
 
-    <h1>Simple Melody Listening Experiment</h1>
+    <h1>Simple Listening Experiment</h1>
 
     <p>You have been invited to participate in a 30-minute listening
     experiment where you will <strong>rate the properties of short
@@ -46,10 +46,62 @@
           <input type="number" name="YMT" min="0" max="99" required="required"/>
         </fieldset>
       </div>
-      <div style="clear:both">
+
+      <div id="expertise">
+        <p>Please rate how much you like the following music styles.</p>
+
+        <fieldset class="expertise">
+          <legend>Jazz</legend>
+          <label>Dislike</label><input type="radio" name="Jazz" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Jazz" value="1"/>
+          <label>Like</label><input type="radio" name="Jazz" value="2"/>
+        </fieldset>
+
+        <fieldset class="expertise">
+          <legend>Rock</legend>
+          <label>Dislike</label><input type="radio" name="Rock" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Rock" value="1"/>
+          <label>Like</label><input type="radio" name="Rock" value="2"/>
+        </fieldset>
+
+        <fieldset class="expertise">
+          <legend>Funk</legend>
+          <label>Dislike</label><input type="radio" name="Funk" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Funk" value="1"/>
+          <label>Like</label><input type="radio" name="Funk" value="2"/>
+        </fieldset>
+
+        <fieldset class="expertise">
+          <legend>Pop</legend>
+          <label>Dislike</label><input type="radio" name="Pop" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Pop" value="1"/>
+          <label>Like</label><input type="radio" name="Pop" value="2"/>
+        </fieldset>
+
+        <fieldset class="expertise">
+          <legend>Samba</legend>
+          <label>Dislike</label><input type="radio" name="Samba" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Samba" value="1"/>
+          <label>Like</label><input type="radio" name="Samba" value="2"/>
+        </fieldset>
+
+        <fieldset class="expertise">
+          <legend>Reggae</legend>
+          <label>Dislike</label><input type="radio" name="Reggae" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Reggae" value="1"/>
+          <label>Like</label><input type="radio" name="Reggae" value="2"/>
+        </fieldset>
+
+        <fieldset class="expertise">
+          <legend>Folk</legend>
+          <label>Dislike</label><input type="radio" name="Folk" value="0" required="required"/>
+          <label>Neutral</label><input type="radio" name="Folk" value="1"/>
+          <label>Like</label><input type="radio" name="Folk" value="2"/>
+        </fieldset>
+      </div>
+      
 	<button type="submit" class="submit-button">Next</button>
 	<button type="reset" class="submit-button">Reset</button>
-      </div>
     </form>
 
     <script>
