@@ -1,4 +1,4 @@
-   function redirect(url) {
+function redirect(url) {
     if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
 	var referLink = document.createElement('a');
 	referLink.href = url;
@@ -13,6 +13,9 @@ function init_weve(docs) {
     return {
 	current_page: 1,
 	next:function(){
+	    if (this.current_page >= total_pages) {
+		return false;
+	    }
 	    this.current_page += 1;
 	    docs.rows.shift();
 	    if (docs.rows[0]) {
