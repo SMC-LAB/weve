@@ -3,6 +3,7 @@
 use strict; use warnings; use 5.010;
 use Getopt::Long; use Pod::Usage;
 use File::Basename; use File::Spec; use Cwd;
+use URI::Escape;
 
 use Carp;
 use JSON;
@@ -31,6 +32,7 @@ my %known_annotations = (
     pfd      => 'pfds2',
     mtd      => 'microtd',
     ssd      => 'ssimd',
+    notes    => 'kv',
 );
 
 my %slurp_dispatch = (
@@ -41,8 +43,8 @@ my %slurp_dispatch = (
     oga   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
     m4a   => sub { Cwd::abs_path(File::Spec->catfile($_[1], $_[2])) },
     map {
-        $known_annotations{$_} => sub { [split m/\s+/, $_[0]] }
-    } qw/pfd mtd ssd beatsI beatsII/
+        $known_annotations{$_} => sub { chomp; [split m/\s+/, $_[0]] }
+    } qw/pfd mtd ssd beatsI beatsII notes/,
 );
 
 my ( $INH, $OUTH, $ERRH ) = _prepare_io( \%ARGV, \@ARGV );
@@ -249,7 +251,7 @@ sub get_filedata_from_dir {
     my %generic_files;
     for my $generic_file (@generic_files) {
         my $ext = (split m[\.], $generic_file)[-1];
-        my $key = basename($generic_file, ".$ext");
+        my $key = uri_escape(basename($generic_file, ".$ext"));
         my $val = do {
             local $/;
             open my $GENERIC_FILE, '<', File::Spec->catfile($generic_dir, $generic_file) or croak $!;
@@ -425,9 +427,9 @@ __END__
  -d, --dai-files    <list of N strings > list of filenames with .dai extension
  -e, --est-files    <list of N strings > list of filenames with .est extension
  -a, --annotations  [string=string pair] -a key=value, where key is one of:
-                                             'echonest', 'beatsI', 'beatsII', 'audio', 'pfd', 'mtd', 'ssd',
+                                             'echonest', 'beatsI', 'beatsII', 'audio', 'pfd', 'mtd', 'ssd', 'kv'
                                          and value is a directory containing:
-                                             '*.json', '*.beats', '*.beats', '*.mp3 '*.pfds2', '*.microtd', and '*.ssimd' files,
+                                             '*.json', '*.beats', '*.beats', '*.mp3 '*.pfds2', '*.microtd', and '*.ssimd', '*.kv' files,
                                          respectively (This option can be repeated multiple times)
  -o, --output       [string]             output filename                          (STDOUT)
      --verbose      [integer]            print increasingly verbose error messages

@@ -22,13 +22,14 @@ my ( $INH, $OUTH, $ERRH ) = _prepare_io( \%ARGV, \@ARGV );
 
 my $ua = LWP::UserAgent->new(
     agent => "json2couch/$VERSION",
-    env_proxy => 1,
+#    env_proxy => 1,
 );
 
 my $server = CouchDB::Client->new(
     uri => $ARGV{uri},
     ua => $ua,
 );
+
 $server->testConnection or die "Server $ARGV{uri} cannot be reached";
 
 my $db = $server->newDB($ARGV{db});
