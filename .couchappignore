@@ -1,0 +1,7 @@
+[
+  "^scripts$",
+  "^README\\.md$",
+  "^Makefile$"
+  "^weve\\.png$",
+  "^\\.couchapprc$"
+]
