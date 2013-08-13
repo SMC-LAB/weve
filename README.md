@@ -66,52 +66,52 @@ resulting data for analysis. Here's an overview of the available
 targets:
 
 - `help` - print this information
-- `list` - print the default values for all Make variables
+- `usage` - print usage information
+- `targets` - print available targets
+- `variables` - print available variables
 - `experiment` - prepare local filesystem, generate and upload design document
-- `analyze` - dump participants and ratings as a repeated measures/within-subjects csv document
+- `analyze` - dump participants and ratings as a repeated measures/within-subjects `csv` document
 - `cleanup` - delete participant and ratings data from the server
 - `clean` - delete local output directory
 - `check` - ensure all dependencies are met
-- `dir` - create local experiment dir `$OUT_DIR`
-- `convert` - convert audio files `$AUDIO_DIR/*.$AUDIO_EXT` directory to `wav`, `mp3`, `m4a`, and `oga`
-- `design` - generate couchdb design document from local filesystem
-- `deploy` - upload the weve design document to the server
+- `dir` - create local experiment filesystem
+- `convert` - convert audio files `$AUDIO_DIR/*.$AUDIO_EXT` to `mp3`, `m4a`, and `oga`
+- `design` - generate `couchdb` design document from local filesystem
+- `deploy` - upload the `weve` design document to the server
 - `upload` - upload audio files as attachments to the server
-- `participants` - dump series of participant data as `JSON` documents
-- `ratings` - dump series of ratings data as `JSON` documents
-- `table` - generate repeated measures/within-subjects `CSV` document from participant and ratings data
+- `participants` - dump series of participant data as `json` documents
+- `ratings` - dump series of ratings data as `json` documents
+- `table` - generate repeated measures/within-subjects `csv` document from participant and ratings data
 - `delete-participants` - delete participant data from `couchdb` server
 - `delete-ratings` - delete ratings data from `couchdb` server
 
-Here are some usage examples:
+Here is a complete list of `Make` variables you can set, together with
+their default values:
+
+- `FFMPEG` - `/usr/bin/ffmpeg`
+- `PERL` - `/usr/bin/perl`
+- `COUCHAPP` - `/usr/bin/couchapp`
+- `FS2JSON` - `scripts/fs2json.pl`
+- `JSON2COUCH` - `scripts/json2couch.pl`
+- `COUCH2CSV` - `scripts/couch2csv.pl`
+- `OUT_DIR` - `out`
+- `AUDIO_DIR` - `in`
+- `AUDIO_EXT` - `wav`
+- `COUCHAPP_ENV` - `default`
+- `COUCHAPP_RC` - `.couchapprc`
+- `COUCHAPP_HOST` - Extract from `COUCHAPP_RC`
+- `COUCHAPP_DB` - `Extract from `COUCHAPP_RC`
+
+And here are some usage examples:
 
     make AUDIO_DIR=/some/audio/files/dir OUT_DIR=/some/output/dir experiment # upload experiment
     make OUT_DIR=/some/output/dir analyze                                    # download data
     make OUT_DIR=/some/output/dir clean                                      # delete local data
     make cleanup                                                             # delete remote data
 
-Here is a complete list of `Make` variables you can set, together with
-their default values:
-
-- `SOX_BIN` - `$(which sox)`
-- `LAME_BIN` - `$(which lame)`
-- `FAAC_BIN` - `$(which faac)`
-- `OGGENC_BIN` - `$(which oggenc)`
-- `PYTHON_BIN` - `$(which python)`
-- `PERL_BIN` - `$(which perl)`
-- `COUCHAPP_BIN` - `$(which couchapp)`
-- `FS2JSON_BIN` - `scripts/fs2json.pl`
-- `JSON2COUCH_BIN` - `scripts/json2couch.pl`
-- `COUCH2CSV_BIN` - `scripts/couch2csv.pl`
-- `OUT_DIR` - `out`
-- `AUDIO_DIR` - `in`
-- `AUDIO_EXT` - `wav`
-- `COUCHAPP_ENV` - `default`
-- `COUCHAPP_RC` - `.couchapprc`
-- `COUCHAPP_HOST` - Extracted from `COUCHAPP_RC`
-- `COUCHAPP_DB` - Extracted from `COUCHAPP_RC`
-
 ## Deployment
+
+> [Note that the following is exactly what is run with `make deploy`]
 
 Assuming you just cloned this app from git, and you have changed into
 the app directory in your terminal, you want to push it to your
