@@ -1,6 +1,6 @@
 ## Weve - Automated listening tests
 
-![weve.png](./weve.png)
+![](./weve.png)
 
 This is a CouchApp for conducting automated listening tests
 online. CouchApps are web applications which can be served directly
@@ -13,7 +13,7 @@ jQuery libraries and plugins that ship with CouchDB.
 
 ## Application structure
 
-Weve is divided into two parts: static pages and the application
+`weve` is divided into two parts: static pages and the application
 itself. The static pages live under the `_attachments` folder. The
 default flow is as follows:
 
@@ -153,3 +153,25 @@ you'd run:
 
 Of course you can continue to add more deployment targets as you see
 fit, and give them whatever names you like.
+
+## Dependencies
+
+`weve` has been developed and tested on `Linux`, but should work on
+any `Unix`-like system. It obviously requires a `CouchDB` server with
+administrative priviledges to create databases and, locally, the
+following programs:
+
+- `ffmpeg` - http://ffmpeg.org/
+- `curl` - http://curl.haxx.se/
+- `jshon` - http://kmkeen.com/jshon/
+- `couchapp` - http://couchapp.org
+- `perl` - http://www.perl.org/
+
+Additionally, the Perl programs in the `scripts` directory require the
+following modules:
+
+- `CouchDB::Client` - http://search.cpan.org/perldoc?CouchDB%3A%3AClient
+- `DateTime::Format::Strptime` - http://search.cpan.org/perldoc?DateTime%3A%3AFormat%3A%3AStrptime
+- `JSON` - http://search.cpan.org/perldoc?JSON
+- `MIME::Types` - http://search.cpan.org/perldoc?MIME%3A%3ATypes
+- `URI::Escape` - http://search.cpan.org/perldoc?URI%3A%3AEscape
